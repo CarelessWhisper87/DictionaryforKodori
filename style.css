@@ -1,0 +1,16 @@
+body {
+  background-color: rgb(255, 192, 248);
+}
+h1{
+    color: rgb(0, 149, 255)
+}
+h3{
+    color: rgb(0, 149, 255)
+}
+.screen {
+  display: flex;
+  flex-direction: column;
+  border: 6px solid rgb(0, 149, 255);
+  padding: 50px;
+  width: 500px; 
+}

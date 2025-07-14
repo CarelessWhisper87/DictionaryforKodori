@@ -47,11 +47,11 @@ btn.addEventListener("click", function() {
 
     if (Japanese) {
 
-        wt = "以下の日本語を中国語と英語に翻訳し、それぞれの言語で説明してください。余計な言葉を言わず、直接答えを出してください。出力はMarkdown形式：\n\n" + theword;
+        wt = "以下の日本語を中国語と英語に翻訳し、それぞれの言語で説明してください。余計な言葉と挨拶を言わず、直接答えを出してください。出力はMarkdown形式：\n\n" + theword;
     } else if (Chinese) {
-        wt = "以下の中国語を日本語と英語に翻訳し、それぞれの言語で説明してください。余計な言葉を言わず、直接答えを出してください。出力はMarkdown形式：\n\n" + theword;
+        wt = "以下の中国語を日本語と英語に翻訳し、それぞれの言語で説明してください。余計な言葉と挨拶を言わず、直接答えを出してください。出力はMarkdown形式：\n\n" + theword;
     } else if (English) {
-        wt = "以下の英語を日本語と中国語に翻訳し、それぞれの言語で説明してください。余計な言葉を言わず、直接答えを出してください。出力はMarkdown形式：\n\n" + theword;
+        wt = "以下の英語を日本語と中国語に翻訳し、それぞれの言語で説明してください。余計な言葉と挨拶を言わず、直接答えを出してください。出力はMarkdown形式：\n\n" + theword;
     } 
 
     fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBr-aud0cxk_8KLiET_sDOHHSeC1ua4V7c", {

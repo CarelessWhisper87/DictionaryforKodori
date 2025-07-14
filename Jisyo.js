@@ -54,36 +54,32 @@ btn.addEventListener("click", function() {
         wt = "以下の英語を日本語と中国語に翻訳し、それぞれの言語で説明してください。余計な言葉を言わず、直接答えを出してください。出力はMarkdown形式：\n\n" + theword;
     } 
 
-    fetch("https://api.deepseek.com/chat/completions", {
-    method: "POST",
-    headers: {
+    fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBr-aud0cxk_8KLiET_sDOHHSeC1ua4V7c", {
+        method: "POST",
+        headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer sk-20ae2dd50dc546faa97f2f1a6f4ad2be"
-    },
-    body: JSON.stringify({
-        model: "deepseek-chat",
-        messages: [
-            { role: "system", content: "You are a helpful assistant." },
-            { role: "user", content: wt }
-        ],
-        stream: false
+        },
+        body: JSON.stringify({
+        contents: [
+            { parts: [ { text: wt } ] }
+        ]
+        })
     })
-})
-.then(function(response) {
-    return response.json();
-})
-.then(function(data) {
-    var answer = data.choices[0].message.content;
-    result.innerHTML = marked.parse(answer);
-    push(ref(db, 'history'), {
-        word: theword,
-        result: answer,
-        time: new Date().toISOString()
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        var answer = data.candidates[0].content.parts[0].text;
+        result.innerHTML = marked.parse(answer);
+        push(ref(db, 'history'), {
+            word: theword,
+            result: answer,
+            time: new Date().toISOString()
+        });
+    })
+    .catch(function(error) {
+        result.innerText = "エラーが発生しました。";
     });
-})
-.catch(function(error) {
-    result.innerText = "エラーが発生しました。";
-});
 });
 //ls
 const area = document.getElementById("historyArea");
